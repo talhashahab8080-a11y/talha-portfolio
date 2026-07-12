@@ -380,7 +380,7 @@
     max-width: 1400px; margin: 0 auto;
   }
   .projects-header { margin-bottom: 4rem; display: flex; align-items: flex-end; justify-content: space-between; }
-  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: stretch; }
   .project-card {
     border-radius: 20px;
     background: var(--gray-soft);
@@ -389,11 +389,15 @@
     transition: transform .3s, box-shadow .3s;
     position: relative;
     group: true;
+    display: flex;
+    flex-direction: column;
+    height: 440px;
   }
   .project-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 32px 80px rgba(0,0,0,0.1); }
   .project-card.featured { grid-column: span 2; }
   .project-thumb {
-    aspect-ratio: 16/9;
+    height: 220px;
+    flex-shrink: 0;
     background: var(--violet-light);
     display: flex; align-items: center; justify-content: center;
     position: relative; overflow: hidden;
@@ -424,7 +428,7 @@
     font-family: var(--font-mono);
   }
   .project-card:hover .project-overlay { opacity: 1; }
-  .project-body { padding: 1.5rem; }
+  .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; min-height: 0; }
   .project-client {
     font-family: var(--font-mono);
     font-size: 0.7rem;
@@ -441,9 +445,21 @@
     letter-spacing: -0.01em;
     margin-bottom: 0.5rem;
     line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-  .project-desc { font-size: 0.825rem; color: var(--gray-text); line-height: 1.6; }
-  .project-tags { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .project-desc {
+    font-size: 0.825rem;
+    color: var(--gray-text);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .project-tags { display: flex; gap: 0.5rem; margin-top: auto; padding-top: 1rem; flex-wrap: wrap; }
   .tag {
     font-size: 0.7rem;
     font-weight: 600;
@@ -453,6 +469,77 @@
     background: var(--violet-light);
     color: var(--violet);
     letter-spacing: 0.05em;
+  }
+
+  /* ARTICLE MODAL */
+  .article-modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(26,26,46,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 3vh 0;
+    overflow-y: auto;
+  }
+  .article-modal-overlay.open { display: block; }
+  .article-modal {
+    position: relative;
+    background: var(--white);
+    max-width: 780px;
+    margin: 0 auto;
+    border-radius: 24px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.25);
+    overflow: hidden;
+    animation: modalIn .35s cubic-bezier(0.16,1,0.3,1);
+  }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(30px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .article-modal-close {
+    position: absolute; top: 1.25rem; right: 1.25rem; z-index: 2;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    border: none; cursor: none;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: background .2s, transform .2s;
+  }
+  .article-modal-close:hover { background: var(--coral); transform: rotate(90deg); }
+  .article-modal-close:hover svg path { stroke: white; }
+  .article-modal-thumb { width: 100%; aspect-ratio: 21/9; overflow: hidden; }
+  .article-modal-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .article-modal-body { padding: 2.5rem 3rem 3.5rem; }
+  .article-modal-body .section-label { margin-bottom: 0.75rem; }
+  .article-modal-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .article-modal-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .article-modal-body p { font-size: 1rem; color: #33333f; line-height: 1.75; margin-bottom: 1.3rem; }
+  .article-modal-body h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+    margin: 2rem 0 0.9rem;
+    color: var(--charcoal);
+  }
+  .article-modal-body ul { margin: 0 0 1.3rem 1.25rem; }
+  .article-modal-body li { font-size: 1rem; color: #33333f; margin-bottom: 0.55rem; line-height: 1.6; }
+  .article-callout {
+    background: var(--gray-soft);
+    border-left: 3px solid var(--violet);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0 0.5rem;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+  }
+  @media (max-width: 640px) {
+    .article-modal-body { padding: 2rem 1.5rem 2.5rem; }
   }
 
   /* EXPERIENCE */
@@ -706,7 +793,7 @@
   <div class="projects-grid">
     <a href="https://firmtechservices.com/the-role-of-voice-search-in-modern-seo" target="_blank" class="project-card featured reveal" style="text-decoration:none;color:inherit;">
       <div class="project-thumb">
-        <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=900&q=80" alt="Voice search SEO" style="width:100%;height:100%;object-fit:cover;">
+        <img src="https://images.unsplash.com/photo-1529359744902-86b2ab9edaea?w=1200&q=80" alt="Smart speaker used for voice search" style="width:100%;height:100%;object-fit:cover;object-position:center;">
         <div class="project-overlay">View Project ↗</div>
       </div>
       <div class="project-body">
@@ -825,8 +912,139 @@
         </div>
       </div>
     </a>
+    <a href="#article-medical-billing" onclick="openArticle(event,'article-medical-billing')" class="project-card reveal" style="text-decoration:none;color:inherit;">
+      <div class="project-thumb">
+        <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=80" alt="Medical billing companies in New York">
+        <div class="project-overlay">View Article ↗</div>
+      </div>
+      <div class="project-body">
+        <div class="project-client">Technical Writing</div>
+        <div class="project-title">2 Best Medical Billing Companies in New York (2026)</div>
+        <div class="project-desc">A comparison-style blog profiling two New York medical billing companies, HMS USA LLC and iRCM, breaking down their specialties, service styles, and which type of practice each one fits best.</div>
+        <div class="project-tags">
+          <span class="tag">Medical Billing</span>
+          <span class="tag">Healthcare</span>
+        </div>
+      </div>
+    </a>
+    <a href="#article-dental-billing" onclick="openArticle(event,'article-dental-billing')" class="project-card reveal" style="text-decoration:none;color:inherit;">
+      <div class="project-thumb">
+        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80" alt="Dental billing services">
+        <div class="project-overlay">View Article ↗</div>
+      </div>
+      <div class="project-body">
+        <div class="project-client">Technical Writing</div>
+        <div class="project-title">Get Paid for Dental Work You Already Did</div>
+        <div class="project-desc">A service page explaining the pitfalls of in-house dental billing, CDT coding, pre-authorizations, EOBs, and why outsourcing to dedicated billing specialists saves practices real money.</div>
+        <div class="project-tags">
+          <span class="tag">Dental Billing</span>
+          <span class="tag">B2B</span>
+        </div>
+      </div>
+    </a>
   </div>
 </section>
+
+<!-- ARTICLE MODALS -->
+<div class="article-modal-overlay" id="article-medical-billing" onclick="if(event.target===this)closeArticle('article-medical-billing')">
+  <div class="article-modal">
+    <button class="article-modal-close" onclick="closeArticle('article-medical-billing')" aria-label="Close article">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="#1A1A2E" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <div class="article-modal-thumb">
+      <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1400&q=80" alt="Medical billing paperwork and stethoscope on a desk">
+    </div>
+    <div class="article-modal-body">
+      <div class="section-label">Technical / Service Writing</div>
+      <h2 class="article-modal-title">2 Best Medical Billing Companies in New York (2026)</h2>
+      <div class="article-modal-tags">
+        <span class="tag">Medical Billing</span>
+        <span class="tag">Healthcare</span>
+        <span class="tag">New York</span>
+      </div>
+
+      <p>New York is not an easy state to bill in. Between Medicaid managed care plans, Medicare, and commercial payers like Empire BlueCross BlueShield and UnitedHealthcare, a single practice might be dealing with five or six different sets of rules for five or six different patients in the same afternoon. Get the wrong code or miss a pre-authorization on any one of them, and that claim sits unpaid for weeks.</p>
+
+      <p>This is why so many New York practices stop trying to handle billing in-house. It's not that their staff isn't capable. It's that keeping up with this many payer requirements at once is close to a full-time job on its own. Below are two companies that have built a real track record handling exactly this.</p>
+
+      <h3>1. HMS USA LLC</h3>
+      <p>HMS USA LLC is based in Floral Park, out on Long Island, and has been operating since 2010. It's grown into a billing company that mostly works with solo practitioners, small clinics, and home health agencies. These are practices that want someone who actually knows their account, not just a ticket number in a queue.</p>
+      <p>What sets them apart is less about technology and more about how closely they work with each client:</p>
+      <ul>
+        <li>Certified billing and coding staff who work denials directly instead of writing them off</li>
+        <li>Full credentialing support, which matters in New York given how slow payer credentialing can be</li>
+        <li>A wide range of specialties covered, so a practice isn't stuck fitting into a one-size-fits-all process</li>
+        <li>A consultative style where someone actually knows your account rather than treating you as a ticket number</li>
+      </ul>
+      <p>If you're a smaller practice and you want a billing partner who'll actually pick up the phone and remember your situation, HMS is a solid fit.</p>
+
+      <h3>2. iRCM</h3>
+      <p>iRCM is based in Brooklyn, and that local footprint actually shows up in how they work. Their team knows the specific quirks of New York City's Medicaid managed care organizations, down to which documentation each one tends to push back on.</p>
+      <p>Where iRCM stands out is the mix of automation and people:</p>
+      <ul>
+        <li>AI-assisted claims review that catches coding errors and missing documentation before submission</li>
+        <li>A consulting layer that goes beyond the claims themselves, helping practices find where the process keeps breaking down</li>
+        <li>Experience across both solo providers and multi-location groups, so the model scales with practice size</li>
+        <li>Deep local knowledge of NYC's Medicaid managed care organizations and what each one expects</li>
+      </ul>
+      <p>That said, it's not a fully automated black box, and the local expertise is what keeps it from feeling like one.</p>
+      <p>If your practice handles a higher claim volume and you want speed without losing the local knowledge, iRCM is worth a serious look.</p>
+
+      <h3>So, Which One?</h3>
+      <p>It comes down to what you actually need. Want a smaller, more personal setup where someone knows your practice by name? Go with HMS. Need to move a higher volume of claims faster, with a team that already understands NYC's payer maze? iRCM is the better match.</p>
+
+      <div class="article-callout">Either way, the goal is the same: stop losing money to denials and delays, and get back to spending your time on patients instead of paperwork.</div>
+    </div>
+  </div>
+</div>
+
+<div class="article-modal-overlay" id="article-dental-billing" onclick="if(event.target===this)closeArticle('article-dental-billing')">
+  <div class="article-modal">
+    <button class="article-modal-close" onclick="closeArticle('article-dental-billing')" aria-label="Close article">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="#1A1A2E" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <div class="article-modal-thumb">
+      <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1400&q=80" alt="Dentist reviewing paperwork at a dental practice">
+    </div>
+    <div class="article-modal-body">
+      <div class="section-label">Technical / Service Writing</div>
+      <h2 class="article-modal-title">Get Paid for Dental Work You Already Did</h2>
+      <div class="article-modal-tags">
+        <span class="tag">Dental Billing</span>
+        <span class="tag">Healthcare</span>
+        <span class="tag">B2B</span>
+      </div>
+
+      <p>A patient gets a crown placed on Tuesday. The claim goes out Thursday. Six weeks later, it's still sitting in "pending" because someone used the wrong modifier, and now your front desk is on hold with the insurer instead of checking in patients. This is the part of running a dental practice nobody talks about at dental school, and it's costing practices real money every month.</p>
+
+      <h3>Dental billing has its own rulebook</h3>
+      <p>Dental claims run on CDT codes, and payers treat them differently depending on the category, diagnostic, preventive, restorative, periodontic, prosthodontic, oral surgery. A crown isn't coded like a filling. An implant isn't coded like a root canal. Get the modifier wrong on any of them and you're either denied outright or quietly underpaid, which is worse, because nobody notices until the numbers don't add up at the end of the quarter.</p>
+      <p>On top of the coding itself, there's a pile of things that have to happen before a claim even has a chance: pre-authorization for implants and orthodontic cases, coordination of benefits when a patient has both medical and dental coverage, and attachments such as X-rays, periodontal charting, and clinical narratives that insurers won't process a claim without. Miss one piece and the whole claim stalls.</p>
+      <p>Most practices don't have a dedicated person for all of this. They have a front desk team doing it between phone calls and check-ins, which means it gets done last, or not quite right.</p>
+
+      <h3>What changes when billing is handled by people who only do billing</h3>
+      <p>It's not complicated, but it does take attention most practices can't spare day to day:</p>
+      <ul>
+        <li>Claims go out coded correctly the first time, so they don't bounce back</li>
+        <li>Pre-authorizations get filed before the procedure, not chased afterward</li>
+        <li>Denials get appealed properly instead of written off</li>
+        <li>You get real reporting on what's pending, what's aging, and what's been denied and why</li>
+        <li>Your staff spends their day with patients instead of on hold with insurers</li>
+      </ul>
+      <p>None of this is about replacing your team. It's about taking the part of the job that has nothing to do with dentistry off their plate.</p>
+
+      <h3>Built for how dental practices actually run</h3>
+      <p>It doesn't matter if your practice is general dentistry, periodontics, oral surgery, or some mix, the billing process needs to match what you actually do. That means knowing the difference between coding a sinus lift and coding a frenectomy, and it means working inside whatever dental software or EHR your practice already uses, so switching billing support doesn't mean switching your whole workflow.</p>
+      <p>It also covers the parts that happen before and after the claim itself: verifying a patient's coverage before they're in the chair, posting EOBs accurately, tracking claim status so nothing sits forgotten, and handling patient statements in a way that keeps collections moving without making patients feel chased.</p>
+
+      <h3>Why practices end up outsourcing this</h3>
+      <p>Here's the honest version: a denied claim costs more than the fee a billing partner charges to prevent it. And once you add up what an in-house billing hire actually costs, salary, training, turnover, the learning curve every time someone new starts, outsourcing tends to win on price, not just convenience.</p>
+      <p>If your denial rate has been creeping up, or your reimbursements are taking longer than they used to, or your front desk is buried in claim follow-up instead of patient care, that's usually the sign it's time to hand this part off.</p>
+
+      <div class="article-callout" style="border-left-color: var(--coral);">Want to know what your denial rate actually looks like? Get in touch for a free billing review, most practices are surprised by what it turns up.</div>
+    </div>
+  </div>
+</div>
 
 <!-- EDUCATION -->
 <section id="education" style="padding: 6rem 4rem; background: var(--gray-soft);">
@@ -1310,6 +1528,30 @@ window.addEventListener('scroll', () => {
     nav.style.padding = '1rem 4rem';
   } else {
     nav.style.padding = '1.5rem 4rem';
+  }
+});
+
+// ARTICLE MODAL open/close
+function openArticle(e, id) {
+  if (e) e.preventDefault();
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.classList.add('open');
+  overlay.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+function closeArticle(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.article-modal-overlay.open').forEach(o => {
+      o.classList.remove('open');
+      document.body.style.overflow = '';
+    });
   }
 });
 
