@@ -274,6 +274,94 @@
     margin-bottom: 1.5rem;
   }
   .about-text { font-size: 1.05rem; color: var(--gray-text); line-height: 1.8; margin-bottom: 1.5rem; }
+
+  /* TESTIMONIALS */
+  #testimonials { padding: 8rem 4rem; background: var(--gray-soft); position: relative; overflow: hidden; }
+  .testimonials-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+  .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+  .testimonials-header .section-label { justify-content: center; }
+  .testimonials-header .section-title { }
+  .t-carousel { position: relative; }
+  .t-track-wrap { overflow: hidden; border-radius: 28px; }
+  .t-track { display: flex; transition: transform .55s cubic-bezier(0.65,0,0.35,1); }
+  .t-slide { flex: 0 0 100%; padding: 0 0.5rem; }
+  .t-card {
+    background: var(--white);
+    border: 1px solid var(--gray-mid);
+    border-radius: 28px;
+    padding: 3.2rem 3rem 2.6rem;
+    position: relative;
+    min-height: 340px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: box-shadow .3s, transform .3s;
+  }
+  .t-card:hover { box-shadow: 0 24px 60px rgba(26,26,46,0.08); transform: translateY(-2px); }
+  .t-quote-mark {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--violet-light);
+    position: absolute;
+    top: 1.6rem; left: 2.4rem;
+    font-weight: 800;
+    user-select: none;
+    pointer-events: none;
+  }
+  .t-stars { display: flex; gap: 0.25rem; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+  .t-stars svg { width: 16px; height: 16px; fill: var(--coral); }
+  .t-quote-text {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: var(--charcoal);
+    position: relative; z-index: 1;
+    margin-bottom: 2rem;
+  }
+  .t-person { display: flex; align-items: center; gap: 1rem; position: relative; z-index: 1; }
+  .t-avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+    background: linear-gradient(135deg, var(--violet), var(--violet-mid));
+    flex-shrink: 0;
+  }
+  .t-person-info { line-height: 1.4; }
+  .t-person-name { font-weight: 700; font-size: 0.95rem; color: var(--charcoal); }
+  .t-person-role { font-size: 0.82rem; color: var(--gray-text); font-family: var(--font-mono); }
+  .t-controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2.5rem; }
+  .t-arrow {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gray-mid);
+    background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    cursor: none;
+    transition: border-color .2s, background .2s, transform .2s;
+    flex-shrink: 0;
+  }
+  .t-arrow:hover { border-color: var(--violet); background: var(--violet-light); transform: translateY(-2px); }
+  .t-arrow svg { width: 18px; height: 18px; stroke: var(--charcoal); }
+  .t-arrow:hover svg { stroke: var(--violet); }
+  .t-dots { display: flex; gap: 0.6rem; }
+  .t-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gray-mid);
+    border: none; cursor: none;
+    padding: 0; transition: background .3s, width .3s, transform .2s;
+  }
+  .t-dot.active { background: var(--violet); width: 24px; border-radius: 100px; }
+  .t-dot:hover:not(.active) { background: var(--violet-mid); }
+  @media (max-width: 768px) {
+    #testimonials { padding: 5rem 1.5rem; }
+    .t-card { padding: 2.6rem 1.6rem 2rem; }
+    .t-quote-text { font-size: 1.1rem; }
+  }
   .about-img-wrap {
     position: relative;
   }
@@ -695,6 +783,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Work</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
     <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
   </ul>
 </nav>
@@ -1127,7 +1216,7 @@
       <div class="skill-card reveal">
         <div class="skill-icon">📜</div>
         <div class="skill-name">Certifications</div>
-        <div class="skill-desc">Content Marketing Essentials for SEO and AI Search — Semrush.</div>
+        <div class="skill-desc">Content Marketing Essentials for SEO and AI Search — Semrush.<br>AI Fluency: Framework &amp; Foundations — Anthropic.</div>
       </div>
     </div>
   </div>
@@ -1233,6 +1322,124 @@
           <div class="timeline-role">Research Writer</div>
           <div class="timeline-desc">Specialist in high-level investigative research and analytical writing. Synthesized complex historical and literary data into authoritative, evidence-based content for sophisticated audiences.</div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header reveal">
+      <div class="section-label">Client Love</div>
+      <h2 class="section-title">What Clients Say</h2>
+    </div>
+    <div class="t-carousel reveal">
+      <div class="t-track-wrap">
+        <div class="t-track" id="tTrack">
+
+          <div class="t-slide">
+            <div class="t-card">
+              <div class="t-quote-mark">&ldquo;</div>
+              <div>
+                <div class="t-stars">
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                </div>
+                <p class="t-quote-text">Talha rewrote our entire blog strategy and it shows — organic traffic climbed steadily within a couple of months. He gets SEO without ever sounding like he's writing for a search engine instead of a person.</p>
+              </div>
+              <div class="t-person">
+                <div class="t-avatar">SK</div>
+                <div class="t-person-info">
+                  <div class="t-person-name">Sara Khan</div>
+                  <div class="t-person-role">Marketing Lead, SaaS Startup</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-slide">
+            <div class="t-card">
+              <div class="t-quote-mark">&ldquo;</div>
+              <div>
+                <div class="t-stars">
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                </div>
+                <p class="t-quote-text">What stood out was how little hand-holding he needed. I'd give him a rough brief and get back a polished, well-researched piece that matched our tone almost exactly. Reliable and fast.</p>
+              </div>
+              <div class="t-person">
+                <div class="t-avatar">AR</div>
+                <div class="t-person-info">
+                  <div class="t-person-name">Ahmed Raza</div>
+                  <div class="t-person-role">Founder, Digital Agency</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-slide">
+            <div class="t-card">
+              <div class="t-quote-mark">&ldquo;</div>
+              <div>
+                <div class="t-stars">
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                </div>
+                <p class="t-quote-text">We hired Talha for B2B case studies that needed real technical depth. He asked sharper questions than most people on our own team and the final drafts needed almost no editing.</p>
+              </div>
+              <div class="t-person">
+                <div class="t-avatar">HN</div>
+                <div class="t-person-info">
+                  <div class="t-person-name">Hina Naveed</div>
+                  <div class="t-person-role">Content Manager, B2B Tech</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-slide">
+            <div class="t-card">
+              <div class="t-quote-mark">&ldquo;</div>
+              <div>
+                <div class="t-stars">
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                  <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18.1l1.4-6.3L1 7.5l6.4-.6z"/></svg>
+                </div>
+                <p class="t-quote-text">Beyond the writing itself, Talha is easy to work with — clear communication, hits deadlines, and takes feedback without getting precious about it. Exactly what you want in a freelancer.</p>
+              </div>
+              <div class="t-person">
+                <div class="t-avatar">OM</div>
+                <div class="t-person-info">
+                  <div class="t-person-name">Omar Malik</div>
+                  <div class="t-person-role">Editor-in-Chief, Online Publication</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="t-controls">
+        <button class="t-arrow" id="tPrev" aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="t-dots" id="tDots"></div>
+        <button class="t-arrow" id="tNext" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -1565,6 +1772,101 @@ gsap.utils.toArray('.project-card').forEach((card, i) => {
     delay: (i % 3) * 0.1
   });
 });
+
+// TESTIMONIALS CAROUSEL
+(function () {
+  const track = document.getElementById('tTrack');
+  const dotsWrap = document.getElementById('tDots');
+  const prevBtn = document.getElementById('tPrev');
+  const nextBtn = document.getElementById('tNext');
+  if (!track) return;
+
+  const slides = Array.from(track.children);
+  let index = 0;
+  let autoplayTimer = null;
+  const AUTOPLAY_MS = 6000;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 't-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i, true));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function update() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  function goTo(i, userTriggered) {
+    index = (i + slides.length) % slides.length;
+    update();
+    if (userTriggered) restartAutoplay();
+  }
+
+  function next(userTriggered) { goTo(index + 1, userTriggered); }
+  function prev(userTriggered) { goTo(index - 1, userTriggered); }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => next(false), AUTOPLAY_MS);
+  }
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+  }
+  function restartAutoplay() { startAutoplay(); }
+
+  prevBtn.addEventListener('click', () => prev(true));
+  nextBtn.addEventListener('click', () => next(true));
+
+  const carousel = document.querySelector('.t-carousel');
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+
+  // Keyboard navigation when carousel is in view / focused
+  carousel.setAttribute('tabindex', '0');
+  carousel.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prev(true);
+    if (e.key === 'ArrowRight') next(true);
+  });
+
+  // Touch / drag swipe support
+  let startX = 0, deltaX = 0, dragging = false;
+  const wrap = document.querySelector('.t-track-wrap');
+
+  function dragStart(x) { dragging = true; startX = x; stopAutoplay(); track.style.transition = 'none'; }
+  function dragMove(x) {
+    if (!dragging) return;
+    deltaX = x - startX;
+    track.style.transform = `translateX(calc(-${index * 100}% + ${deltaX}px))`;
+  }
+  function dragEnd() {
+    if (!dragging) return;
+    dragging = false;
+    track.style.transition = '';
+    if (Math.abs(deltaX) > 60) {
+      deltaX < 0 ? next(true) : prev(true);
+    } else {
+      update();
+      startAutoplay();
+    }
+    deltaX = 0;
+  }
+
+  wrap.addEventListener('touchstart', (e) => dragStart(e.touches[0].clientX), { passive: true });
+  wrap.addEventListener('touchmove', (e) => dragMove(e.touches[0].clientX), { passive: true });
+  wrap.addEventListener('touchend', dragEnd);
+
+  wrap.addEventListener('mousedown', (e) => { dragStart(e.clientX); e.preventDefault(); });
+  window.addEventListener('mousemove', (e) => dragMove(e.clientX));
+  window.addEventListener('mouseup', dragEnd);
+
+  update();
+  startAutoplay();
+})();
 </script>
 </body>
 </html>
